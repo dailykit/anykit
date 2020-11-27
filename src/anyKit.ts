@@ -1,4 +1,5 @@
 import { log } from "./utils/logger";
+import { parseJsonld } from "./utils/parser";
 
 type options = {
   type: "manual" | "auto";
@@ -17,8 +18,19 @@ export class AnyKit {
     this.config = config;
   }
 
-  showModal(e: MouseEvent) {
-    console.log("show modal fn called", e);
+  showModal(_: MouseEvent) {
+    const schema = parseJsonld();
+
+    if (!schema) {
+      log(
+        "info",
+        "No recipe schema found",
+        "read more about Recipe schema here https://schema.org/Recipe"
+      );
+      return;
+    }
+
+    console.log(schema);
   }
 
   renderBtn() {
