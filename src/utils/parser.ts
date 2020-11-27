@@ -1,11 +1,7 @@
+import { Recipe } from "schema-dts";
 import { log } from "./logger";
 
-export interface RecipeSchema {
-  name: string;
-  desc: string;
-}
-
-export const parseJsonld = (): RecipeSchema | undefined => {
+export const parseJsonld = (): Recipe | undefined => {
   // read more about "Recipe" schema here https://schema.org/Recipe
   // get all json+ld script tags and filter out every schema except "Recipe"
   try {
