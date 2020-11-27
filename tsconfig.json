@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "module": "esnext",
-    "target": "es2017",
+    "target": "ES6",
     "strict": true,
     "declaration": true,
     "outDir": "dist",
@@ -15,7 +15,6 @@
     "acceptance-tests",
     "webpack",
     "jest",
-    "example/src/setupTests.ts"
   ],
   "files": [
     "src/index.ts"
