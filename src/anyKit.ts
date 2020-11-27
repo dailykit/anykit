@@ -3,15 +3,14 @@ type options = {
   ingredients: string;
   steps: string;
   inventory: string;
+  btnLocation: string;
 };
 
 export class AnyKit {
-  config:options;
+  config: options;
   constructor(config: options) {
-    this.config = config
+    this.config = config;
   }
 
-  init() {
-
-  }
+  init() {}
 }
