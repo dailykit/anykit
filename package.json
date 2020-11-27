@@ -8,7 +8,9 @@
   "license": "MIT",
   "scripts": {
     "compile": "rm -rf dist && tsc",
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "build:example": "rm example/anykit.js && cp dist/index.js example/anykit.js",
+    "predeploy": "yarn compile && yarn build && yarn build:example"
   },
   "devDependencies": {
     "rollup": "^2.33.3",

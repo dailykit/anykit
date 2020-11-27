@@ -15,7 +15,7 @@
     "acceptance-tests",
     "webpack",
     "jest",
-    "src/setupTests.ts"
+    "example/src/setupTests.ts"
   ],
   "files": [
     "src/index.ts"
