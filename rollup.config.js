@@ -4,7 +4,6 @@ const { terser } = require("rollup-plugin-terser");
 
 export default [
   {
-    external: ["@github/combobox-nav"],
     input: "dist/index.js",
     output: {
       file: pkg["module"],
