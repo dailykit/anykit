@@ -10,9 +10,11 @@
     "compile": "rm -rf dist && tsc",
     "build": "rollup -c",
     "build:example": "rm example/anykit.js && cp dist/index.js example/anykit.js",
-    "predeploy": "yarn compile && yarn build && yarn build:example"
+    "predeploy": "yarn compile && yarn build && yarn build:example",
+    "run:example": "http-server example/ -p 8081"
   },
   "devDependencies": {
+    "http-server": "^0.12.3",
     "rollup": "^2.33.3",
     "rollup-plugin-node-resolve": "^5.2.0",
     "typescript": "^4.1.2"
