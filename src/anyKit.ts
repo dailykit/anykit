@@ -1,5 +1,5 @@
 import { log } from "./utils/logger";
-import { parseJsonld } from "./utils/parser";
+import { parseJsonld, parseMicrodata } from "./parser";
 
 type options = {
   type: "manual" | "auto";
@@ -19,7 +19,15 @@ export class AnyKit {
   }
 
   showModal(_: MouseEvent) {
-    const schema = parseJsonld();
+    let schema = parseJsonld();
+    if (!schema) {
+      log(
+        "info",
+        "Recipe schema not available in json+ld format",
+        "trying microdata format"
+      );
+      schema = parseMicrodata();
+    }
 
     if (!schema) {
       log(
@@ -30,7 +38,7 @@ export class AnyKit {
       return;
     }
 
-    console.log(schema);
+    log("info", schema);
   }
 
   renderBtn() {
