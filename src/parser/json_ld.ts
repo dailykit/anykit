@@ -1,5 +1,5 @@
 import { Recipe } from "schema-dts";
-import { log } from "./logger";
+import { log } from "../utils/logger";
 
 let recipe: Recipe;
 
@@ -15,7 +15,8 @@ export const parseJsonld = (): Recipe | undefined => {
       .map((c) => JSON.parse(c.textContent!))
       .filter((s) => s["@type"] === "Recipe");
 
-    // At this point, the script expects only one schema for "Recipe". The first schema in sources will be used
+    // At this point, the script expects only one schema for "Recipe".
+    // Hence, the first schema in sources will be used
     recipe = sources[0];
     return sources[0];
   } catch (error) {
