@@ -1,7 +1,4 @@
-export const log = (
-  type: "info" | "error",
-  ...messages: Array<string | Error>
-) => {
+export const log = (type: "info" | "error", ...messages: any) => {
   switch (type) {
     case "info":
       for (const infoMsg of messages) console.log(infoMsg);
