@@ -1,5 +1,6 @@
 const pkg = require("./package.json");
 const resolve = require("rollup-plugin-node-resolve");
+const { terser } = require("rollup-plugin-terser");
 
 export default [
   {
@@ -9,6 +10,6 @@ export default [
       file: pkg["module"],
       format: "es",
     },
-    plugins: [resolve()],
+    plugins: [resolve(), terser()],
   },
 ];
