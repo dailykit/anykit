@@ -2,8 +2,8 @@ import { Recipe } from "schema-dts";
 import { log } from "../utils/logger";
 import { parser, ParsedRecipeIngredient } from "./parseIngredients";
 
-export interface RecipeSchema extends Recipe {
-  recipeIngreident: ParsedRecipeIngredient[];
+export interface RecipeSchema extends Omit<Recipe, "recipeIngredient"> {
+  recipeIngredient: ParsedRecipeIngredient[];
 }
 
 let recipe: RecipeSchema;
@@ -24,7 +24,7 @@ export const parseJsonld = (): RecipeSchema | undefined => {
     // Hence, the first schema in sources will be used
     recipe = sources[0];
     const parsedIngredients = parser(
-      recipe["recipeIngredient"] || (recipe["ingredients"] as any)
+      (recipe["recipeIngredient"] as any) || (recipe["ingredients"] as any)
     );
     sources[0].recipeIngredient = parsedIngredients;
     return sources[0];
