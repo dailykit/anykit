@@ -8,16 +8,14 @@
   "license": "MIT",
   "scripts": {
     "compile": "rm -rf dist && tsc",
-    "build": "rollup -c",
-    "build:example": "rm example/anykit.js && cp dist/index.js example/anykit.js",
+    "build": "parcel build dist/index.js",
+    "build:example": "rm example/anykit.js && cp dist/index.js example/anykit.js && cp dist/index.js.map example/index.js.map",
     "predeploy": "yarn compile && yarn build && yarn build:example",
     "run:example": "http-server example/ -p 8081"
   },
   "devDependencies": {
     "http-server": "^0.12.3",
-    "rollup": "^2.33.3",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-terser": "^7.0.2",
+    "parcel-bundler": "^1.12.4",
     "typescript": "^4.1.2"
   },
   "dependencies": {
