@@ -22,9 +22,11 @@ export const parseJsonld = (): RecipeSchema | undefined => {
 
     // At this point, the script expects only one schema for "Recipe".
     // Hence, the first schema in sources will be used
-    const parsedIngredients = parser(sources[0].recipeIngredient);
-    sources[0].recipeIngredient = parsedIngredients;
     recipe = sources[0];
+    const parsedIngredients = parser(
+      recipe["recipeIngredient"] || (recipe["ingredients"] as any)
+    );
+    sources[0].recipeIngredient = parsedIngredients;
     return sources[0];
   } catch (error) {
     log("error", error);
