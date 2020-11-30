@@ -12,7 +12,7 @@ export const log = (type: "info" | "error", ...messages: any) => {
 };
 
 const _log = (type: "info" | string, message: any) =>
-  console.log(`[ANYKIT][${type.toUpperCase()}]: ${message}`);
+  console.log(`[ANYKIT][${type.toUpperCase()}]`, message);
 
 const _error = (type: "error" | string, message: any) =>
-  console.error(`[ANYKIT][${type.toUpperCase()}]: ${message}`);
+  console.error(`[ANYKIT][${type.toUpperCase()}]`, message);
