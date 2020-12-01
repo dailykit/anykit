@@ -1,14 +1,9 @@
 import { Recipe } from "schema-dts";
 import { log } from "../utils/logger";
-import { parser, ParsedRecipeIngredient } from "./parseIngredients";
 
-export interface RecipeSchema extends Omit<Recipe, "recipeIngredient"> {
-  recipeIngredient: ParsedRecipeIngredient[];
-}
+let recipe: Recipe;
 
-let recipe: RecipeSchema;
-
-export const parseJsonld = (): RecipeSchema | undefined => {
+export const parseJsonld = (): Recipe | undefined => {
   // read more about "Recipe" schema here https://schema.org/Recipe
   // get all json+ld script tags and filter out every schema except "Recipe"
   try {
@@ -23,10 +18,6 @@ export const parseJsonld = (): RecipeSchema | undefined => {
     // At this point, the script expects only one schema for "Recipe".
     // Hence, the first schema in sources will be used
     recipe = sources[0];
-    const parsedIngredients = parser(
-      (recipe["recipeIngredient"] as any) || (recipe["ingredients"] as any)
-    );
-    sources[0].recipeIngredient = parsedIngredients;
     return sources[0];
   } catch (error) {
     log("error", error);

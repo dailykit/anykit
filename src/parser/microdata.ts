@@ -1,11 +1,9 @@
 import { Recipe } from "schema-dts";
 import { log } from "../utils/logger";
-import { RecipeSchema } from "./json_ld";
-import { parser } from "./parseIngredients";
 
-let recipe: RecipeSchema;
+let recipe: Recipe;
 
-export const parseMicrodata = (): RecipeSchema | undefined => {
+export const parseMicrodata = (): Recipe | undefined => {
   try {
     if (recipe) return recipe;
     // get Recipe microdata scope
@@ -35,9 +33,8 @@ export const parseMicrodata = (): RecipeSchema | undefined => {
       _recipe[key!] = value;
     });
 
-    _recipe["recipeIngredient"] = parser(_recipe.recipeIngredient);
     recipe = _recipe;
-    return _recipe as RecipeSchema;
+    return _recipe as Recipe;
   } catch (error) {
     log("error", error);
   }
