@@ -1,4 +1,3 @@
-import { Recipe } from "schema-dts";
 import { log } from "../utils/logger";
 import { RecipeSchema } from "./json_ld";
 import { parser } from "./parseIngredients";
