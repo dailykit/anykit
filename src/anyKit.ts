@@ -16,9 +16,6 @@ export class AnyKit {
   config: options;
   constructor(config: options) {
     this.config = config;
-  }
-
-  showModal(_: MouseEvent) {
     let schema = parseJsonld();
     if (!schema) {
       log(
@@ -41,7 +38,8 @@ export class AnyKit {
     log("info", schema);
   }
 
-  renderBtn() {
+  init() {
+    // render "buy me a mealkit button"
     const btn = document.createElement("button");
     const target = document.querySelector(this.config.button.location);
 
@@ -56,13 +54,7 @@ export class AnyKit {
     }
 
     btn.innerHTML = this.config.button.text || "Buy as MealKit";
-    btn.addEventListener("click", this.showModal);
     btn.classList.add("anykit__btn-hero");
     target?.appendChild(btn);
-  }
-
-  init() {
-    // render "buy me a mealkit button"
-    this.renderBtn();
   }
 }
