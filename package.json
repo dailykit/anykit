@@ -6,6 +6,10 @@
   "types": "dist/index.d.ts",
   "author": "siddhant <siddhantk232@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dailykit/anykit"
+  },
   "scripts": {
     "compile": "rm -rf dist && tsc",
     "build": "parcel build dist/index.js",
