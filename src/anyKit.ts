@@ -12,10 +12,10 @@ export class AnyKit {
   constructor(config: options) {
     this.config = config;
 
-    // send page url to anykit-server
     const { location } = window;
 
-    fetch("http://localhost:5000/recipes", {
+    // send page url to anykit-server
+    fetch("https://anykit-server.herokuapp.com/recipes", {
       method: "POST",
       body: JSON.stringify({
         recipeUrl: location.toString(),
