@@ -9,6 +9,30 @@ type options = {
 
 export class AnyKit {
   config: options;
+  baseStyles = `
+    .anykit__btn {
+      background-color: tomato;
+      color: white;
+      padding: 1.25rem;
+      border: 0;
+      border-radius: 0.25rem;
+      cursor: pointer;
+    }
+
+    .anykit__btn:hover {
+      filter: brightness(0.9);
+    }
+  `;
+
+  fixedStyles = `
+    .anykit__btn--fixed {
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: 10000
+    }
+  `;
+
   constructor(config: options) {
     this.config = config;
 
@@ -33,15 +57,15 @@ export class AnyKit {
       });
   }
 
+  // render "buy BMK button"
   init() {
-    // render "buy me a mealkit button"
     const btn = document.createElement("button");
-    btn.innerHTML = this.config.button.text || "Buy as MealKit";
-    btn.classList.add("anykit__btn-hero");
-
-    if (this.config.button.location) {
+    const style = document.createElement("style");
+    style.textContent = this.baseStyles;
+    btn.innerHTML = this.config.button?.text || "Buy as MealKit";
+    btn.classList.add("anykit__btn");
+    if (this.config.button?.location) {
       const target = document.querySelector(this.config.button.location);
-
       if (!target) {
         log(
           "error",
@@ -51,11 +75,12 @@ export class AnyKit {
         );
         return;
       }
-
       target?.appendChild(btn);
     } else {
-      btn.classList.add("anykit__btn-fixed");
+      btn.classList.add("anykit__btn--fixed");
+      style.textContent += this.fixedStyles;
       document.body.appendChild<HTMLButtonElement>(btn);
     }
+    document.head.appendChild(style);
   }
 }
