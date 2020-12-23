@@ -1,7 +1,7 @@
 import { log } from "./utils/logger";
 
 type options = {
-  button: {
+  button?: {
     location?: string;
     text?: string;
   };

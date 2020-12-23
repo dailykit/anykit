@@ -2,8 +2,8 @@ import { AnyKit } from "./anyKit";
 
 declare global {
   interface Window {
-    AnyKit: typeof AnyKit;
+    anykit: any;
   }
 }
 
-window.AnyKit = AnyKit;
+window.anykit = new AnyKit({});
