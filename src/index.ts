@@ -7,3 +7,4 @@ declare global {
 }
 
 window.anykit = new AnyKit({});
+window.anykit.init();
