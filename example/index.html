@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Anykit example recipe webpage</title>
     <link rel="stylesheet" href="/style.css" />
-
+    <!-- anykit browser script -->
+    <script src="anykit.js"></script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -96,13 +97,13 @@
       </div>
       From Janel, May 5 -- thank you, great recipe! ...
     </div>
-
-    <!-- anykit browser script -->
-    <!--
-      use cdn in production
-      <script src="https://cdn.jsdelivr.net/npm/anykit/dist/index.js"></script>
-    -->
-    <script src="anykit.js"></script>
-    <script src"main.js"></script>
+    <hr />
+    <br />
+    <button>should be normal</button>
+    <anykit-button></anykit-button>
+    <script>
+      // Anykit class should be available here
+      const anykit = new Anykit({ isManual: true });
+    </script>
   </body>
 </html>
