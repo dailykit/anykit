@@ -9,6 +9,7 @@ type options = {
 
 export class AnyKit {
   config: options;
+  modal = document.createElement("div");
   baseStyles = `
     .anykit__btn {
       background-color: tomato;
@@ -21,6 +22,19 @@ export class AnyKit {
 
     .anykit__btn:hover {
       filter: brightness(0.9);
+    }
+
+    .anykit__modal {
+      display: none;
+      transform: scale(0);
+      opacity: 0;
+      transition: all 0.2s ease-out;
+    }
+
+    .anykit__modal--show {
+      display: block;
+      transform: scale(1);
+      opacity: 1;
     }
   `;
 
@@ -57,13 +71,19 @@ export class AnyKit {
       });
   }
 
+  showModal(_: Event) {
+    this.modal.classList.toggle("anykit__modal--show");
+  }
+
   // render "buy BMK button"
   init() {
-    const btn = document.createElement("button");
+    const bmkButton = document.createElement("button");
     const style = document.createElement("style");
+
     style.textContent = this.baseStyles;
-    btn.innerHTML = this.config.button?.text || "Buy as MealKit";
-    btn.classList.add("anykit__btn");
+    bmkButton.innerHTML = this.config.button?.text || "Buy as MealKit";
+    bmkButton.addEventListener("click", this.showModal);
+    bmkButton.classList.add("anykit__btn");
     if (this.config.button?.location) {
       const target = document.querySelector(this.config.button.location);
       if (!target) {
@@ -75,12 +95,15 @@ export class AnyKit {
         );
         return;
       }
-      target?.appendChild(btn);
+      target?.appendChild(bmkButton);
     } else {
-      btn.classList.add("anykit__btn--fixed");
+      bmkButton.classList.add("anykit__btn--fixed");
       style.textContent += this.fixedStyles;
-      document.body.appendChild<HTMLButtonElement>(btn);
+      document.body.appendChild<HTMLButtonElement>(bmkButton);
     }
+    this.modal.classList.add("anykit__modal");
+    document.body.appendChild(this.modal);
+    // inject styles
     document.head.appendChild(style);
   }
 }
