@@ -1,13 +1,15 @@
 const pkg = require("./package.json");
-const resolve = require("rollup-plugin-node-resolve");
+const { nodeResolve } = require("@rollup/plugin-node-resolve");
+const filesize = require("rollup-plugin-filesize");
 
+// add terser
 export default [
   {
     input: "build/index.js",
     output: {
       file: pkg["module"],
-      format: "iife",
+      format: "esm",
     },
-    plugins: [resolve()],
+    plugins: [nodeResolve(), filesize()],
   },
 ];
