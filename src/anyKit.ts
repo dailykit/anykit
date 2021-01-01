@@ -9,7 +9,6 @@ type options = {
 
 export class AnyKit {
   config: options;
-  modal = document.createElement("div");
   baseStyles = `
     .anykit__btn {
       background-color: tomato;
@@ -25,14 +24,20 @@ export class AnyKit {
     }
 
     .anykit__modal {
-      display: none;
+      width: 400px;
+      height: 600px;
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      border-radius: 0.25rem;
+      background: #444f66;
       transform: scale(0);
+      transform-origin: bottom right;
       opacity: 0;
-      transition: all 0.2s ease-out;
+      transition: all 0.25s ease-out;
     }
 
     .anykit__modal--show {
-      display: block;
       transform: scale(1);
       opacity: 1;
     }
@@ -71,18 +76,21 @@ export class AnyKit {
       });
   }
 
-  showModal(_: Event) {
-    this.modal.classList.toggle("anykit__modal--show");
+  toggleModal(_: Event) {
+    const modal = document.querySelector(".anykit__modal");
+    log("info", modal);
+    modal?.classList.toggle("anykit__modal--show");
   }
 
   // render "buy BMK button"
   init() {
     const bmkButton = document.createElement("button");
     const style = document.createElement("style");
+    const modal = document.createElement("div");
 
     style.textContent = this.baseStyles;
     bmkButton.innerHTML = this.config.button?.text || "Buy as MealKit";
-    bmkButton.addEventListener("click", this.showModal);
+    bmkButton.addEventListener("click", this.toggleModal);
     bmkButton.classList.add("anykit__btn");
     if (this.config.button?.location) {
       const target = document.querySelector(this.config.button.location);
@@ -101,8 +109,8 @@ export class AnyKit {
       style.textContent += this.fixedStyles;
       document.body.appendChild<HTMLButtonElement>(bmkButton);
     }
-    this.modal.classList.add("anykit__modal");
-    document.body.appendChild(this.modal);
+    modal.classList.add("anykit__modal");
+    document.body.appendChild(modal);
     // inject styles
     document.head.appendChild(style);
   }
