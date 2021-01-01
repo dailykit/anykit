@@ -11,17 +11,16 @@
     "url": "https://github.com/dailykit/anykit"
   },
   "scripts": {
-    "compile": "rm -rf build && tsc",
-    "build": "npm run compile && rollup -c",
-    "build:example": "rm example/anykit.js && cp dist/index.js example/anykit.js",
-    "prepare": "npm run build && npm run build:example",
-    "run:example": "http-server example/ -p 8081"
+    "dev": "tsc -w",
+    "build": "tsc"
   },
   "devDependencies": {
+    "@rollup/plugin-node-resolve": "^11.0.1",
     "http-server": "^0.12.3",
     "rollup": "^2.35.1",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "schema-dts": "^0.8.1",
     "typescript": "^4.1.2"
+  },
+  "dependencies": {
+    "lit-html": "^1.3.0"
   }
 }
