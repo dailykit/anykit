@@ -1,4 +1,4 @@
-import { AnykitApp } from "./components/button";
+import { AnykitApp } from "./components/anykitApp";
 import { log } from "./utils/logger";
 
 type options = {
