@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Anykit example recipe webpage</title>
     <link rel="stylesheet" href="/style.css" />
-    <!-- anykit browser script -->
-    <script src="anykit.js"></script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -100,10 +98,13 @@
     <hr />
     <br />
     <button>should be normal</button>
-    <anykit-button></anykit-button>
-    <script>
-      // Anykit class should be available here
-      const anykit = new Anykit({ isManual: true });
+    <anykit-app></anykit-app>
+    <!-- anykit browser script -->
+    <script type="module">
+      import("./anykit.js").then(() => {
+        // window.Anykit should be available now
+        const anykit = new Anykit({});
+      });
     </script>
   </body>
 </html>
