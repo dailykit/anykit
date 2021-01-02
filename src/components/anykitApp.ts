@@ -1,4 +1,5 @@
 import { render, html } from "lit-html";
+import { classMap } from "lit-html/directives/class-map";
 import "@material/mwc-button";
 import "@material/mwc-dialog";
 import { log } from "../utils/logger";
@@ -45,12 +46,15 @@ export class AnykitApp extends HTMLElement {
 
   template() {
     return html` <style>
+        .btn--fixed {
+          position: fixed;
+          right: 1rem;
+          bottom: 1rem;
+          z-index: 10000;
+        }
         mwc-button {
           --mdc-theme-primary: #ff9e2a;
           --mdc-theme-on-primary: white;
-          ${window.anykitConfig?.isManual
-          ? html`position: fixed; right: 1rem; bottom: 1rem; z-index: 10000`
-          : html``}
         }
       </style>
       <mwc-dialog
@@ -77,6 +81,7 @@ export class AnykitApp extends HTMLElement {
         @click=${this.toggleModal}
         unelevated
         label="${this.text}"
+        class=${classMap({ "btn--fixed": !window.anykitConfig.isManual })}
       ></mwc-button>`;
   }
 }
