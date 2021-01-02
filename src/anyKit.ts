@@ -1,3 +1,4 @@
+import { AnykitApp } from "./components/button";
 import { log } from "./utils/logger";
 
 type options = {
@@ -34,6 +35,7 @@ class AnyKit {
       })
       .then(res => {
         log("info", res);
+        customElements.define("anykit-app", AnykitApp);
       });
   }
 }
